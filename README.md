@@ -18,3 +18,11 @@ After making changes:
 When someone has made a change:
 
 `git pull origin master`
+
+# Installing Libraries 
+
+`pip install matplotlib`
+`pip install sklearn`
+`pip install python-mnist`
+
+(if "pip" is not recognized as a command, try typing "pip")
