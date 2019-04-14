@@ -25,4 +25,4 @@ When someone has made a change:
 `pip install sklearn`
 `pip install python-mnist`
 
-(if "pip" is not recognized as a command, try typing "pip")
+(if "pip" is not recognized as a command, try typing "pip3")
