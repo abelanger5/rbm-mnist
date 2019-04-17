@@ -4,7 +4,7 @@ from scipy.special import expit
 from sklearn.utils import gen_even_slices
 
 class RBM:
-    def __init__(self, data, batch_size=10, num_iter=10, learning_rate=0.1, num_h=784):
+    def __init__(self, data, batch_size=10, num_iter=30, learning_rate=0.01, num_h=784):
         num_v = data.shape[1]
 
         # initialize hyperparameters
@@ -47,7 +47,9 @@ class RBM:
     def sample_v_from_h(self, h):
         prob = self.mean_visible_field(h);
 
-        return (self.rng.random_sample(size=prob.shape) < prob);
+        # return (self.rng.random_sample(size=prob.shape) < prob);
+        # Hinton suggests keeping probabilities
+        return prob;
 
     def fit_batch(self, v_pos):
         # compute hidden and visible, positive and negative phases

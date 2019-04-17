@@ -7,7 +7,7 @@ import helpers.viewer as viewer
 images, labels = import_mnist();
 images = np.floor(2 * (images - np.min(images, 0)) / (np.max(images, 0) + 0.0001));
 
-model = BernoulliRBM(learning_rate=0.01, batch_size=10, n_iter=8, n_components=784, verbose=True);
+model = BernoulliRBM(learning_rate=0.05, batch_size=10, n_iter=20, n_components=400, verbose=True);
 model.fit(images);
 
 n_samples = 5; 

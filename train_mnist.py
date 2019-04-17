@@ -3,6 +3,7 @@ import time
 import numpy as np 
 from scipy.special import expit
 from sklearn.utils import gen_even_slices
+import matplotlib.pyplot as plt
 
 # homemade
 from helpers.importer import import_mnist
@@ -10,23 +11,29 @@ import helpers.viewer as viewer
 from models.rbm import RBM
 
 images, labels = import_mnist();
-images = np.floor(2 * (images - np.min(images, 0)) / (np.max(images, 0) + 0.0001));
+# images = np.floor(2 * (images - np.min(images, 0)) / (np.max(images, 0) + 0.0001));
+images = (images - np.min(images, 0)) / (np.max(images, 0) + 0.0001);
 
 rbm = RBM(images);
 rbm.train();
 
-n_samples = 8; 
+n_samples = 20; 
+n_images_per_sample = 10; 
+n_gibbs = 10; 
+
+total_image = np.zeros(((n_images_per_sample) * 28, (n_samples) * 28));
 
 # loop to generate n_samples
 for i in range(0, n_samples):
     # sample an image
     visible = images[i*1000]
 
-    viewer.view_data(visible, labels[i*1000]);
-    
-    # perform 1000 steps of Gibbs sampling
-    for j in range(0, 1000):
-        hidden = rbm.sample_h_from_v(visible);
-        visible = rbm.sample_v_from_h(hidden); 
+    for j in range(0, n_images_per_sample):
+        total_image[j*28:(j+1)*28,i*28:(i+1)*28] = np.reshape(visible, (28, 28));
+
+        for k in range(0, n_gibbs):
+            hidden = rbm.sample_h_from_v(visible);
+            visible = rbm.sample_v_from_h(hidden); 
         
-    viewer.view_data(visible, labels[i*1000]);
+plt.imshow(total_image, cmap='gray_r');
+plt.show();
