@@ -4,7 +4,7 @@ from scipy.special import expit
 from sklearn.utils import gen_even_slices
 
 class RBM:
-    def __init__(self, data, batch_size=10, num_iter=30, learning_rate=0.01, num_h=784):
+    def __init__(self, data, batch_size=10, num_iter=20, learning_rate=0.05, num_h=784):
         num_v = data.shape[1]
 
         # initialize hyperparameters
