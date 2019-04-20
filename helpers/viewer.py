@@ -20,3 +20,4 @@ labels = np.asarray(labels);
 plt.imshow(np.reshape(images[number,:], (28, 28)), cmap='gray_r');
 plt.title('Digit Label: {}'.format(labels[number]));
 plt.show();
+
