@@ -16,3 +16,13 @@ class Mapping:
     
     def get_hidden(self, label):
         # return the mean activation array based on the label
+
+mapping = new Mapping(5, 2);
+
+mapping.add_hidden([0,0,0,0,0], 0);
+mapping.add_hidden([.5,.5,.5,.5,.5], 0);
+mapping.add_hidden([1,1,1,1,1], 1);
+mapping.add_hidden([.5,.5,.5,.5,.5], 1);
+
+print(mapping.get_hidden(0)) # should return [.25,.25,.25,.25,.25]
+print(mapping.get_hidden(1)) # should return [.75,.75,.75,.75,.75]
