@@ -11,7 +11,7 @@ class Mapping:
         # create array to store total counts for each label (array size of (num_labels, 1))
         # self.total_counts = (HERE)
     
-    def add_hidden(self, hidden):
+    def add_hidden(self, hidden, label):
         # compute new mean activation based on provided hidden array 
     
     def get_hidden(self, label):
