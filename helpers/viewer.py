@@ -15,11 +15,11 @@ def view_sample(number=0):
 	labels = np.asarray(labels);
 
 	# Plot the image
-	plt.imshow(np.reshape(images[number,:], (28, 28)), cmap='gray_r');
+	plt.imshow(np.reshape(images[number,:], (28, 28)), cmap='gray');
 	plt.title('Digit Label: {}'.format(labels[number]));
 	plt.show();
 
 def view_data(data, label):
-	plt.imshow(np.reshape(data, (28, 28)), cmap='gray_r');
+	plt.imshow(np.reshape(data, (28, 28)), cmap='gray');
 	plt.title('Digit Label: {}'.format(label));
 	plt.show();

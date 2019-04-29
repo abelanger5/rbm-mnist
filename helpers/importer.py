@@ -15,3 +15,9 @@ def import_mnist(binary=False):
 		print("Imported MNIST data without binarization");
 
 		return images, labels;
+
+def import_test():
+    mndata = MNIST('./mnist');
+    images, labels = mndata.load_testing();
+
+    return images, labels

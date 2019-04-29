@@ -2,9 +2,10 @@ import time
 import numpy as np 
 from scipy.special import expit
 from sklearn.utils import gen_even_slices
+from .eval import pseudo_likelihood
 
 class RBM:
-    def __init__(self, data, batch_size=10, num_iter=20, learning_rate=0.05, num_h=784):
+    def __init__(self, data, batch_size=10, num_iter=5, learning_rate=0.012, num_h=300):        
         num_v = data.shape[1]
 
         # initialize hyperparameters
@@ -75,9 +76,13 @@ class RBM:
         return batches; 
 
     def train(self):
+        np.random.shuffle(self.data);
+
         prev_time = time.time();
 
         batches = self.create_batches();
+
+        likelihoods = [];
 
         # loop through iterations, new batch each iteration
         for i in range(1, self.num_iter + 1):
@@ -86,6 +91,11 @@ class RBM:
                 self.fit_batch(v_pos);
 
             print("Iteration %d, time elapsed %.2fs" % (i, time.time() - prev_time));
+            likelihood = pseudo_likelihood(self.data, self.weights, self.biases_v, self.biases_h)
+            likelihoods.append(likelihood)
+            print("Iteration %d, pseudo likelihood %.4f" % (i, likelihood))
             prev_time = time.time();
 
-        return self.biases_h, self.biases_v, self.weights; 
+            np.random.shuffle(self.data);
+
+        return self.biases_h, self.biases_v, self.weights, likelihoods; 
