@@ -5,7 +5,7 @@ from sklearn.utils import gen_even_slices
 from .eval import pseudo_likelihood
 
 class RBM:
-    def __init__(self, data, batch_size=10, num_iter=5, learning_rate=0.012, num_h=300):        
+    def __init__(self, data, batch_size=15, num_iter=5, learning_rate=0.004, num_h=300):        
         num_v = data.shape[1]
 
         # initialize hyperparameters

@@ -1,20 +1,15 @@
 # external libraries
-import time
 import numpy as np 
-from scipy.special import expit
-from sklearn.utils import gen_even_slices
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from sklearn import datasets, neighbors, metrics, linear_model # for linear test model
+from sklearn import datasets, neighbors, metrics, linear_model # for rbm -> logistic regression
 
-# homemade
+# homemade libraries
 from helpers.importer import import_mnist
 from helpers.importer import import_test
 import helpers.viewer as viewer
 from models.rbm import RBM
 from models.simple_generator import SimpleGenerator
-
-NUM_LABELS = 10; 
 
 def test_logistic_regression(weights, biases_v, biases_h):
     # create hidden representations of train and test images
@@ -139,6 +134,8 @@ def generate_noise_animation(rbm, name, weights, biases_v, biases_h, display=Tru
     return ims; 
 
 def generate_animation(rbm, name, weights, biases_v, biases_h, display=True):
+    NUM_LABELS = 10; 
+
     fig2 = plt.figure()
 
     n_samples = 10; 
@@ -196,6 +193,8 @@ def generate_animation(rbm, name, weights, biases_v, biases_h, display=True):
     return ims; 
 
 def test_generator(weights, biases_v, biases_h):
+    NUM_LABELS = 10; 
+    
     n_samples = 10; 
     n_images_per_sample = 10; 
     n_gibbs = 50; 
